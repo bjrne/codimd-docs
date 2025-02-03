@@ -10,7 +10,10 @@ CMD_LDAP_SEARCHBASE=dc=internal,dc=example,dc=com
 CMD_LDAP_SEARCHFILTER=(&(objectcategory=person)(objectclass=user)(|(sAMAccountName={{username}})(mail={{username}})))
 CMD_LDAP_USERIDFIELD=sAMAccountName
 CMD_LDAP_PROVIDERNAME=Example Inc AD
+CMD_LDAP_TLS_CA=server-cert.pem,custom-ca-cert.pem
 ```
+
+Refer to the configuration documentation for a full and current list of options: https://hackmd.io/s/codimd-configuration#LDAP
 
 ## Notes
 - `CMD_LDAP_BINDDN` is either the `distinguishedName` or the `userPrincipalName`.
@@ -25,6 +28,8 @@ CMD_LDAP_PROVIDERNAME=Example Inc AD
 - `CMD_LDAP_USERIDFIELD` means: we want to use `sAMAccountName` as the unique identifier for the account itself.
 
 - `CMD_LDAP_PROVIDERNAME` is just the name on the login page above the username and password field.
+
+- `CMD_LDAP_TLS_CA` (optional) Gives the path to a certificate for LDAP TLS in PEM format. If you're using docker, make sure to also mount it to the container, as the path will be referring to the container filesystem.
 
 ## json format:
 
